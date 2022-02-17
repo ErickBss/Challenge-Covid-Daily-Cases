@@ -1,0 +1,23 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model covidCases {
+  id                  Int     @id @default(autoincrement())
+  date                String? @db.VarChar(255)
+  location            String? @db.VarChar(255)
+  num_sequences       Float?
+  perc_sequences      Float?
+  num_sequences_total Float?
+  variant             String? @db.VarChar(255)
+}
+
+model availableDates {
+  id   Int     @id @default(autoincrement())
+  date String? @db.VarChar(255)
+}
