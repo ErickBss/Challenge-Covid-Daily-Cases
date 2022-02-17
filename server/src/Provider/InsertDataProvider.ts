@@ -1,9 +1,8 @@
-import { Request, Response } from 'express'
 import { client } from '../database/prismaClient'
 const covidData = require('../../data/data.json')
 
 export class InsertDataProvider {
-  handle (req: Request, res:Response) {
+  handle () {
     const data = covidData.map((e) => {
       return e
     })
@@ -17,6 +16,6 @@ export class InsertDataProvider {
       console.log(e)
       process.exit(1)
     })
-    res.json(data)
+    return data
   }
 }

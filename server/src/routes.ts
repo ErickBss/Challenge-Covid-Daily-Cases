@@ -4,18 +4,18 @@ import { Router } from 'express'
 import { AvailableDateController } from './Controllers/AvailableDateController'
 import { CountCasesController } from './Controllers/CountCasesController'
 import { CumulativeCasesController } from './Controllers/CumulativeCasesController'
+import { MainDataController } from './Controllers/MainDataController'
 
 const routes = Router()
 
 routes.use(cors())
 
+const mainData = new MainDataController()
 const availableDate = new AvailableDateController()
 const countCases = new CountCasesController()
 const cumulativeCases = new CumulativeCasesController()
 
-routes.get('/', (req, res) => {
-  res.status(200).json('Fullstack Challenge 2021 🏅 - Covid Daily Cases')
-})
+routes.get('/', mainData.handle)
 
 routes.get('/dates', availableDate.handle)
 
