@@ -24,8 +24,8 @@ export class FilterAvailableDateUseCase {
     const filteredDates = await dbDates.filter(dates)
 
     const verificationAvailableDates = new VerificationAvailableDates()
-    await verificationAvailableDates.execute(filteredDates)
+    const availableDates = await verificationAvailableDates.execute(filteredDates)
 
-    return filteredDates
+    return availableDates
   }
 }
