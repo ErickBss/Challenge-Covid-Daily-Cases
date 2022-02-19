@@ -9,7 +9,7 @@ import {
 import { PreferencesContext } from "../context";
 
 export default function SelectorLine({ dates, cases }) {
-  const [datesValues, setDatesValues] = useState("");
+  const [datesValues, setDatesValues] = useState("2021-03-22");
 
   const { preferences, setPreferences } = useContext(PreferencesContext);
 

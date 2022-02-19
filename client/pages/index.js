@@ -5,6 +5,7 @@ import { QueryClientProvider } from "react-query";
 import Head from "next/head";
 import SelectionBox from "../components/selectionHeader/index";
 import { queryClient } from "../services/queryClient";
+import MapContainer from "../components/mapContainer";
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
       <QueryClientProvider client={queryClient}>
         <PreferencesProvider>
           <SelectionBox />
+          <MapContainer />
         </PreferencesProvider>
       </QueryClientProvider>
     </div>
