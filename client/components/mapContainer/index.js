@@ -7,7 +7,7 @@ import ReactTooltip from "react-tooltip";
 
 import { Container, VariantSelector } from "./style";
 
-import MapChart from "./MapChart";
+import MapChart from "./mapChart";
 
 export default function MapContainer() {
   const [content, setContent] = useState([]);
