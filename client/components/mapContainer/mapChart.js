@@ -4,7 +4,7 @@ import { ComposableMap, Geographies, Geography } from "react-simple-maps";
 const geoUrl =
   "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json";
 
-const MapChart = ({ setTooltipContent, apiData }) => {
+const MapChart = ({ setTooltipContent, apiData, variants }) => {
   return (
     <>
       <ComposableMap data-tip="" projectionConfig={{ scale: 200 }}>
@@ -16,17 +16,21 @@ const MapChart = ({ setTooltipContent, apiData }) => {
                 geography={geo}
                 onMouseEnter={() => {
                   let array = [];
-                  const Data = apiData.forEach((data) => {
+                  let mapData = [];
+                  const Data = variants.forEach((data) => {
                     if (data.location === geo.properties.NAME) {
-                      array = [...array, data];
+                      array = data;
+                      console.log("mapData:", array);
                     }
                     setTooltipContent(
-                      array.map((e) => {
-                        return [
-                          `Name: ${e.location}\n`,
-                          `Variant: ${e.variant}\n`,
-                        ];
-                      })
+                      `Name: ${array.location}  //
+                      Variant: ${array.variant} //
+                      Diary Cases: ${
+                        array.num_sequences == undefined
+                          ? array.num_sequences_total
+                          : array.num_sequences
+                      } //
+                      Percentage: ${array.perc_sequences} //`
                     );
                   });
                   //   const { NAME, POP_EST } = geo.properties;
