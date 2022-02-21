@@ -14,6 +14,7 @@ export default function MapContainer() {
   const [apiData, setApiData] = useState([]);
   const [availableVariants, setAvailableVariants] = useState([]);
   const [variants, setVariants] = useState([]);
+  const [previousPreference, setPreviousPreference] = useState([]);
 
   const { preferences } = useContext(PreferencesContext);
 
@@ -21,22 +22,31 @@ export default function MapContainer() {
 
   // Get the API information, DATES
 
-  useQuery("mainApiInformation", async () => {
-    const response = await axios.get(
-      `http://localhost:3001/cases/${
-        preferences.datesValues == undefined
-          ? "2021-03-08"
-          : preferences.datesValues
-      }/${preferences.cases == undefined ? "count" : preferences.cases}`
-    );
-    console.log("passed");
-    response.data.forEach((e) => {
-      array = [...array, e];
-    });
+  async function getApiData() {
+    await axios
+      .get(
+        `http://localhost:3001/cases/${
+          preferences.datesValues == undefined
+            ? "2021-03-08"
+            : preferences.datesValues
+        }/${preferences.cases == undefined ? "count" : preferences.cases}`
+      )
+      .then((response) => {
+        console.log("passed", preferences);
+        response.data.forEach((e) => {
+          array = [...array, e];
+        });
 
-    getVariantValues();
+        getVariantValues();
+        setApiData(array);
+        return array;
+      });
+  }
 
-    return setApiData(array);
+  const { data } = useQuery("mainApiInformation", getApiData, {
+    notifyOnChangeProps: [data],
+    staleTime: 0,
+    cacheTime: 1,
   });
 
   let isolateVariantName = [];
@@ -89,7 +99,9 @@ export default function MapContainer() {
         apiData={apiData}
         variants={variants}
       />
-      <ReactTooltip>{content}</ReactTooltip>
+      <ReactTooltip type="warning" place="top" effect="float" multiline={true}>
+        {content}
+      </ReactTooltip>
     </Container>
   );
 }

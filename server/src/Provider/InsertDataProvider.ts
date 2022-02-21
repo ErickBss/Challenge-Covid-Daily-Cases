@@ -13,7 +13,6 @@ export class InsertDataProvider {
     }
 
     inserting().catch((e) => {
-      console.log(e)
       process.exit(1)
     })
     return data

@@ -16,21 +16,21 @@ const MapChart = ({ setTooltipContent, apiData, variants }) => {
                 geography={geo}
                 onMouseEnter={() => {
                   let array = [];
-                  let mapData = [];
                   const Data = variants.forEach((data) => {
                     if (data.location === geo.properties.NAME) {
                       array = data;
                       console.log("mapData:", array);
                     }
                     setTooltipContent(
-                      `Name: ${array.location}  //
-                      Variant: ${array.variant} //
-                      Diary Cases: ${
+                      `Name: ${array.location } // 
+                      Variant: ${array.variant} // 
+                      Cases: ${
                         array.num_sequences == undefined
                           ? array.num_sequences_total
                           : array.num_sequences
-                      } //
-                      Percentage: ${array.perc_sequences} //`
+                      } //  
+                      Percentage: ${array.perc_sequences} // `
+                      
                     );
                   });
                   //   const { NAME, POP_EST } = geo.properties;
