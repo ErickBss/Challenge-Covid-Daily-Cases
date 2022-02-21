@@ -22,8 +22,12 @@
 1. Baixe a pasta "server" do projeto 
 2. Entre na pasta através do prompt ou terminal via Vscode
 3. Digite : npm run dev
-4. Clique no link:
+4. Clique no link: http://challenge-covid-daily-cases.vercel.app/
 
+
+#
+
+> Apresentação do projeto: https://www.loom.com/embed/c18c3f19bd384d6c90d0ee42266ff83e
 
 #
 
