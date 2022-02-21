@@ -43,11 +43,7 @@ export default function MapContainer() {
       });
   }
 
-  const { data } = useQuery("mainApiInformation", getApiData, {
-    notifyOnChangeProps: [data],
-    staleTime: 0,
-    cacheTime: 1,
-  });
+  useQuery("mainApiInformation", getApiData);
 
   let isolateVariantName = [];
 
