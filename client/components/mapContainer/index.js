@@ -43,12 +43,15 @@ export default function MapContainer() {
       });
   }
 
-  useQuery("mainApiInformation", getApiData);
+  useEffect(() => {
+    getApiData();
+  }, [preferences]);
+
+  // useQuery("mainApiInformation", getApiData);
 
   let isolateVariantName = [];
 
   function getVariantValues() {
-    console.log("useEffectPassed");
     let filterEachVariant = apiData.filter(filterVariantValues);
 
     filterEachVariant.forEach((e) => {
@@ -62,7 +65,6 @@ export default function MapContainer() {
   }
 
   function handleVariantsValues(variantSelected) {
-    console.log(variantSelected);
     let array = [];
     const filterVariants = apiData.filter((e) => {
       return e.variant == variantSelected;
@@ -78,7 +80,6 @@ export default function MapContainer() {
       <VariantSelector>
         <select
           onChange={(e) => {
-            console.log(e.target.value);
             handleVariantsValues(e.target.value);
           }}
         >
